@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class AutoMobile extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'year',
+        'plate',
+        'model',
+        'capacity',
+    ];
 }
