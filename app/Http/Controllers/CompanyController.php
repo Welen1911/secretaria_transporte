@@ -36,7 +36,12 @@ class CompanyController extends Controller
         $company = Company::find($id);
 
         if (!$company) {
-            return response('', 404);
+
+            $company = Company::where('cnpj', $id)->first();
+
+            if (!$company) {
+                return response('', 404);
+            }
         }
 
         return response(['company' => $company], 200);
