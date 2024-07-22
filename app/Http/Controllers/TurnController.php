@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TurnRequest;
 use App\Models\Turn;
-use Illuminate\Http\Request;
 
 class TurnController extends Controller
 {
@@ -20,7 +20,7 @@ class TurnController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TurnRequest $request)
     {
         $turn = Turn::create($request->all());
 
@@ -44,7 +44,7 @@ class TurnController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TurnRequest $request, string $id)
     {
         $turn = Turn::find($id);
 
