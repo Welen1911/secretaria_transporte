@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutoMobileController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\TurnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,16 @@ Route::prefix('/turn')->group(function () {
 
     Route::delete('/{id}', [TurnController::class, 'destroy'])->name('turn.destroy');
 });
+
+Route::prefix('/company')->group(function () {
+    Route::get('/', [CompanyController::class, 'index'])->name('company.index');
+
+    Route::get('/{id}', [CompanyController::class, 'show'])->name('company.show');
+
+    Route::post('/', [CompanyController::class, 'store'])->name('company.store');
+
+    Route::put('/{id}', [CompanyController::class, 'update'])->name('company.update');
+
+    Route::delete('/{id}', [CompanyController::class, 'destroy'])->name('company.destroy');
+});
+
