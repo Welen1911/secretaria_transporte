@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutoMobileController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\TurnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,3 +47,14 @@ Route::prefix('/company')->group(function () {
     Route::delete('/{id}', [CompanyController::class, 'destroy'])->name('company.destroy');
 });
 
+Route::prefix('/driver')->group(function () {
+    Route::get('/', [DriverController::class, 'index'])->name('driver.index');
+
+    Route::get('/{id}', [DriverController::class, 'show'])->name('driver.show');
+
+    Route::post('/', [DriverController::class, 'store'])->name('driver.store');
+
+    Route::put('/{id}', [DriverController::class, 'update'])->name('driver.update');
+
+    Route::delete('/{id}', [DriverController::class, 'destroy'])->name('driver.destroy');
+});
