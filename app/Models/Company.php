@@ -13,7 +13,7 @@ class Company extends Model
         'name',
         'cnpj',
         'is_enabled',
-        'image',
+        'image'
     ];
 
     public function autoMobiles()
