@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DriverRequest;
 use App\Models\Driver;
-use Illuminate\Http\Request;
 
 class DriverController extends Controller
 {
@@ -20,7 +20,7 @@ class DriverController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DriverRequest $request)
     {
         $driver = Driver::create($request->all());
 
@@ -44,7 +44,7 @@ class DriverController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DriverRequest $request, string $id)
     {
         $driver = Driver::find($id);
 
