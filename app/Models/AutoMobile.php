@@ -15,4 +15,9 @@ class AutoMobile extends Model
         'model',
         'capacity',
     ];
+
+    public function routes() {
+        return $this->hasMany(Route::class);
+    }
+
 }

@@ -15,6 +15,9 @@ Route::get('/user', function (Request $request) {
 Route::prefix('/automobile')->group(function () {
     Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');
 
+    Route::get('/{turnId}/{capacity}', [AutoMobileController::class, 'getByTurnAndCapacitiy'])
+    ->name('automobile.turn.capacity');
+
     Route::get('/{id}', [AutoMobileController::class, 'show'])->name('automobile.show');
 
     Route::post('/', [AutoMobileController::class, 'store'])->name('automobile.store');
@@ -50,6 +53,9 @@ Route::prefix('/company')->group(function () {
 
 Route::prefix('/driver')->group(function () {
     Route::get('/', [DriverController::class, 'index'])->name('driver.index');
+
+    Route::get('/{turnId}/{capacity}', [DriverController::class, 'getByTurnAndCategoryCNH'])
+    ->name('driver.turn.capacity');
 
     Route::get('/{id}', [DriverController::class, 'show'])->name('driver.show');
 

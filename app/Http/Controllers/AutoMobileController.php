@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AutoMobileRequest;
 use App\Models\AutoMobile;
+use App\Services\AutoMobileService;
 
 class AutoMobileController extends Controller
 {
@@ -71,5 +72,12 @@ class AutoMobileController extends Controller
         $autoMobile->delete();
 
         return response(['automobile' => $autoMobile], 200);
+    }
+
+    public function getByTurnAndCapacitiy(string $turnId, string $capacity)
+    {
+        $autoMobiles = AutoMobileService::getByTurnCapacity($capacity, $turnId);
+
+        return response(['autoMobiles' => $autoMobiles], 200);
     }
 }
