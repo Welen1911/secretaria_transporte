@@ -10,6 +10,7 @@ class AutoMobile extends Model
     use HasFactory;
 
     protected $fillable = [
+        'company_id',
         'year',
         'plate',
         'model',
