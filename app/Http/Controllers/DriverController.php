@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DriverRequest;
 use App\Models\Driver;
+use App\Services\DriverService;
 
 class DriverController extends Controller
 {
@@ -71,5 +72,11 @@ class DriverController extends Controller
         $driver->delete();
 
         return response(['driver' => $driver], 200);
+    }
+
+    public function getByTurnAndCategoryCNH(string $turnId, string $capacity) {
+        $drivers = DriverService::getByTurnAndCategoryCNH($capacity, $turnId);
+
+        return response(['drivers' => $drivers], 200);
     }
 }

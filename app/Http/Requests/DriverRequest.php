@@ -23,6 +23,7 @@ class DriverRequest extends FormRequest
     {
         return [
             'status' => 'required|int',
+            'category' => 'required|string',
         ];
     }
 }
