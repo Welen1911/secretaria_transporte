@@ -17,6 +17,7 @@ return new class extends Migration
             ->constrained('companies', 'id')
             ->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('status');
+            $table->string('category');
             $table->timestamps();
         });
     }

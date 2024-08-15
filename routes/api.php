@@ -3,6 +3,7 @@
 use App\Http\Controllers\AutoMobileController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\TravelController;
 use App\Http\Controllers\TurnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,9 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('/automobile')->group(function () {
     Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');
+
+    Route::get('/{turnId}/{capacity}', [AutoMobileController::class, 'getByTurnAndCapacitiy'])
+    ->name('automobile.turn.capacity');
 
     Route::get('/{id}', [AutoMobileController::class, 'show'])->name('automobile.show');
 
@@ -50,6 +54,9 @@ Route::prefix('/company')->group(function () {
 Route::prefix('/driver')->group(function () {
     Route::get('/', [DriverController::class, 'index'])->name('driver.index');
 
+    Route::get('/{turnId}/{capacity}', [DriverController::class, 'getByTurnAndCategoryCNH'])
+    ->name('driver.turn.capacity');
+
     Route::get('/{id}', [DriverController::class, 'show'])->name('driver.show');
 
     Route::post('/', [DriverController::class, 'store'])->name('driver.store');
@@ -58,3 +65,16 @@ Route::prefix('/driver')->group(function () {
 
     Route::delete('/{id}', [DriverController::class, 'destroy'])->name('driver.destroy');
 });
+
+Route::prefix('/travel')->group(function () {
+    Route::get('/', [TravelController::class, 'index'])->name('travel.index');
+
+    Route::get('/{id}', [TravelController::class, 'show'])->name('travel.show');
+
+    Route::post('/', [TravelController::class, 'store'])->name('travel.store');
+
+    Route::put('/{id}', [TravelController::class, 'update'])->name('travel.update');
+
+    Route::delete('/{id}', [TravelController::class, 'destroy'])->name('travel.destroy');
+});
+

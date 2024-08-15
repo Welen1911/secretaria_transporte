@@ -12,5 +12,10 @@ class Driver extends Model
     protected $fillable = [
         'company_id',
         'status',
+        'category',
     ];
+
+    public function routes() {
+        return $this->hasMany(Route::class);
+    }
 }
