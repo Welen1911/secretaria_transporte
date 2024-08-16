@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->dateTime('guard_name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

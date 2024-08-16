@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('turn_id')->constrained('turns', 'id')
             ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('travel_id')->constrained('travel', 'id')
             ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

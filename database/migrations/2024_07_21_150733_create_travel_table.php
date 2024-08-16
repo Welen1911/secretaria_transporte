@@ -17,6 +17,7 @@ return new class extends Migration
             ->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

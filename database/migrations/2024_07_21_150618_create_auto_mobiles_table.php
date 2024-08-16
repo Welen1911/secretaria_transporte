@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('model');
             $table->integer('capacity');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
