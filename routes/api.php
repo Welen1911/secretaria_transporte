@@ -14,7 +14,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('/', AutoMobileController::class);
+Route::apiResource('/automobile', AutoMobileController::class);
 Route::prefix('/automobile')->group(function () {
     Route::get('/{turnId}/{capacity}', [AutoMobileController::class, 'getByTurnAndCapacitiy'])->name('automobile.turn.capacity');
 });
