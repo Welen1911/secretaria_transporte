@@ -41,7 +41,7 @@ class AutoMobileController extends BaseController
             return $this->sendResponse(['automobile' => $autoMobile], "Automóvel Criado com Sucesso", 201);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return $this->sendError($th->getMessage(), "Falha ao cadastrar o Automóvel: ".$request->model, $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao cadastrar o Automóvel: " . $request->model, $th->getCode());
         }
     }
 
@@ -68,21 +68,25 @@ class AutoMobileController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(AutoMobileRequest $request, AutoMobile $autoMobile)
+    public function update(AutoMobileRequest $request, string $id)
     {
         try {
             DB::beginTransaction();
 
+            $autoMobile = AutoMobile::find($id);
+
             if (!$autoMobile) {
                 throw new \Exception("Automóvel não encontrado", 404);
             }
+
             $autoMobile->update($request->all());
 
             DB::commit();
-            return $this->sendResponse(['automobile' => $autoMobile], "", 200);
+
+            return $this->sendResponse(['automobile' => $autoMobile], "Automóvel atualizado com sucesso", 200);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return $this->sendError($th->getMessage(), "Falha ao atualizar o Automóvel: ".$request->model, $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao atualizar o Automóvel: " . $request->model, $th->getCode());
         }
     }
 
