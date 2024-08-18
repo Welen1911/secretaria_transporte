@@ -73,7 +73,10 @@ class AutoMobileController extends BaseController
         try {
             DB::beginTransaction();
 
-            $autoMobile = AutoMobile::find($id);
+            $autoMobile = AutoMobile::query()
+                ->when($request->filled('deleted'), function ($query) {
+                    return $query->withTrashed();
+                })->find($id);
 
             if (!$autoMobile) {
                 throw new \Exception("Automóvel não encontrado", 404);
