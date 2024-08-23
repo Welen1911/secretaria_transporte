@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('turns', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_id');
+            $table->integer('company_id')->nullable();
             $table->string('period');
             $table->string('start_begin');
             $table->string('start_return');
