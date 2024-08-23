@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\DB;
 
 class TravelController extends BaseController
 {
+    public function index()
+    {
+        try {
+            $routes = RouteService::index();
+
+            return $this->sendResponse(['routes' => $routes]);
+        } catch (\Throwable $th) {
+            return $this->sendError($th->getMessage(), "Falha ao pegar rotas", $th->getCode());
+        }
+    }
+
     public function store(Request $request)
     {
         try {
@@ -22,7 +33,7 @@ class TravelController extends BaseController
                 'automobile_id' => $request->automobile_id,
                 'status' => 1,
             ]);
-    
+
             $routeTurn = $route->routeTurn()->create([
                 'turn_id' => $request->turn_id,
             ]);
@@ -32,6 +43,40 @@ class TravelController extends BaseController
         } catch (\Throwable $th) {
             DB::rollBack();
             return $this->sendError($th->getMessage(), "Falha ao cadastrar a Rota", $th->getCode());
+        }
+    }
+
+    public function show(string $id)
+    {
+        try {
+            $route = RouteService::show($id);
+
+            return $this->sendResponse(['route' => $route]);
+        } catch (\Throwable $th) {
+            return $this->sendError($th->getMessage(), "Falha ao pegar a Rota", $th->getCode());
+        }
+    }
+
+    public function update(string $id, Request $request)
+    {
+        try {
+            $route = RouteService::update($id, $request->all());
+
+            return $this->sendResponse(['route' => $route]);
+        } catch (\Throwable $th) {
+            return $this->sendError($th->getMessage(), "Falha ao excluir a Rota", $th->getCode());
+        }
+    }
+
+
+    public function destroy(string $id)
+    {
+        try {
+            $route = RouteService::destroy($id);
+
+            return $this->sendResponse(['route' => $route]);
+        } catch (\Throwable $th) {
+            return $this->sendError($th->getMessage(), "Falha ao excluir a Rota", $th->getCode());
         }
     }
 }

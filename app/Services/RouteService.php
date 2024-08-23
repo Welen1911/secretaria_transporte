@@ -19,7 +19,7 @@ class RouteService
         return $route;
     }
 
-    public function show(string $id) {
+    public static function show(string $id) {
         $route = Route::find($id);
 
         if (!$route) {
@@ -29,7 +29,7 @@ class RouteService
         return $route;
     }
 
-    public function update(string $id, $data) {
+    public static function update(string $id, $data) {
         $route = Route::find($id);
 
         if (!$route) {
@@ -41,7 +41,7 @@ class RouteService
         return $route;
     }
 
-    public function delete(string $id) {
+    public static function destroy(string $id) {
         $route = Route::find($id);
 
         if (!$route) {
