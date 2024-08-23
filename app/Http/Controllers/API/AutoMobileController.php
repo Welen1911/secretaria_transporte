@@ -121,6 +121,6 @@ class AutoMobileController extends BaseController
     {
         $autoMobiles = AutoMobileService::getByTurnCapacity($capacity, $turnId);
 
-        return response(['autoMobiles' => $autoMobiles], 200);
+        return $this->sendResponse(['auto_mobiles' => $autoMobiles]);
     }
 }

@@ -28,7 +28,7 @@ class DriverController extends BaseController
      * Store a newly created resource in storage.
      */
     public function store(DriverRequest $request)
-    {   
+    {
         try {
             DB::beginTransaction();
             $driver = Driver::create($request->all());
@@ -88,7 +88,7 @@ class DriverController extends BaseController
             DB::beginTransaction();
 
             $driver = Driver::find($id);
-                
+
             if (!$driver) {
                 throw new \Exception('Motorista não encontrado', 404);
             }
@@ -101,9 +101,10 @@ class DriverController extends BaseController
         }
     }
 
-    public function getByTurnAndCategoryCNH(string $turnId, string $capacity) {
+    public function getByTurnAndCategoryCNH(string $turnId, string $capacity)
+    {
         $drivers = DriverService::getByTurnAndCategoryCNH($capacity, $turnId);
 
-        return response(['drivers' => $drivers], 200);
+        return $this->sendResponse(['drivers' => $drivers]);
     }
 }
