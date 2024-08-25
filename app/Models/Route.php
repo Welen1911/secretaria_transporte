@@ -14,11 +14,17 @@ class Route extends Model
     protected $fillable = [
         'driver_id',
         'automobile_id',
+        'capacity',
+        'turn_id',
         'status',
     ];
 
 
     public function routeTurn() {
         return $this->hasMany(RouteTurn::class);
+    }
+
+    public function turn() {
+        return $this->belongsTo(Turn::class);
     }
 }

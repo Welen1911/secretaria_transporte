@@ -32,14 +32,17 @@ class TravelController extends BaseController
                 'driver_id' => $request->driver_id,
                 'automobile_id' => $request->automobile_id,
                 'status' => 1,
+                'turn_id' => $request->turn_id,
+                'capacity' => $request->passengersNumber
             ]);
 
-            $routeTurn = $route->routeTurn()->create([
-                'turn_id' => $request->turn_id,
-            ]);
+            // $routeTurn = $route->routeTurn()->create([
+            //     'turn_id' => $request->turn_id,
+            // ]);
 
             DB::commit();
-            return $this->sendResponse(['route' => $route, 'route_turn' => $routeTurn], "Rota Criada com Sucesso", 201);
+            // return $this->sendResponse(['route' => $route, 'route_turn' => $routeTurn], "Rota Criada com Sucesso", 201);
+            return $this->sendResponse(['route' => $route], "Rota Criada com Sucesso", 201);
         } catch (\Throwable $th) {
             DB::rollBack();
             return $this->sendError($th->getMessage(), "Falha ao cadastrar a Rota", $th->getCode());

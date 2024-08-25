@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('automobile_id')->constrained('auto_mobiles', 'id')
             ->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('status');
+            $table->integer('capacity');
+            $table->foreignId('turn_id')->constrained('turns', 'id')
+            ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
