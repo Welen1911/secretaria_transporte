@@ -63,7 +63,13 @@ class TravelController extends BaseController
     public function update(string $id, Request $request)
     {
         try {
-            $route = RouteService::update($id, $request->all());
+            $route = RouteService::update($id, [
+                'driver_id' => $request->driver_id,
+                'automobile_id' => $request->automobile_id,
+                'status' => 1,
+                'turn_id' => $request->turn_id,
+                'capacity' => $request->passengersNumber
+            ]);
 
             return $this->sendResponse(['route' => $route]);
         } catch (\Throwable $th) {
