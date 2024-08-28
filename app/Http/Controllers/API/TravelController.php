@@ -103,9 +103,9 @@ class TravelController extends BaseController
     public function showByDriverId(string $id)
     {
         try {
-            $drivers = RouteService::showByDriverId($id);
+            $routes = RouteService::showByDriverId($id);
 
-            return $this->sendResponse(['drivers' => $drivers]);
+            return $this->sendResponse(['routes' => $routes]);
         } catch (\Throwable $th) {
             return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", $th->getCode());
         }
