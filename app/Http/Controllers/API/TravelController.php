@@ -88,4 +88,26 @@ class TravelController extends BaseController
             return $this->sendError($th->getMessage(), "Falha ao excluir a Rota", $th->getCode());
         }
     }
+
+    public function showByAutomobileId(string $id)
+    {
+        try {
+            $routes = RouteService::showByAutomobileId($id);
+
+            return $this->sendResponse(['routes' => $routes]);
+        } catch (\Throwable $th) {
+            return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", $th->getCode());
+        }
+    }
+
+    public function showByDriverId(string $id)
+    {
+        try {
+            $drivers = RouteService::showByDriverId($id);
+
+            return $this->sendResponse(['drivers' => $drivers]);
+        } catch (\Throwable $th) {
+            return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", $th->getCode());
+        }
+    }
 }

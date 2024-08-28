@@ -6,7 +6,8 @@ use App\Models\Route;
 
 class RouteService
 {
-    public static function index() {
+    public static function index()
+    {
         $routes = Route::all();
 
         return $routes;
@@ -19,7 +20,8 @@ class RouteService
         return $route;
     }
 
-    public static function show(string $id) {
+    public static function show(string $id)
+    {
         $route = Route::find($id);
 
         if (!$route) {
@@ -29,7 +31,8 @@ class RouteService
         return $route;
     }
 
-    public static function update(string $id, $data) {
+    public static function update(string $id, $data)
+    {
         $route = Route::find($id);
 
         if (!$route) {
@@ -41,7 +44,8 @@ class RouteService
         return $route;
     }
 
-    public static function destroy(string $id) {
+    public static function destroy(string $id)
+    {
         $route = Route::find($id);
 
         if (!$route) {
@@ -51,5 +55,27 @@ class RouteService
         $route->delete();
 
         return $route;
+    }
+
+    public static function showByAutomobileId(string $id)
+    {
+        $routes = Route::where('automobile_id', $id)->get();
+
+        if (!$routes) {
+            return null;
+        }
+
+        return $routes;
+    }
+
+    public static function showByDriverId(string $id)
+    {
+        $drivers = Route::where('driver_id', $id)->get();
+
+        if (!$drivers) {
+            return null;
+        }
+
+        return $drivers;
     }
 }
