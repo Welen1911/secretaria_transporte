@@ -25,4 +25,7 @@ Route::prefix('/driver')->group(function () {
     Route::get('/{turnId}/{capacity}', [DriverController::class, 'getByTurnAndCategoryCNH'])->name('driver.turn.capacity');
 });
 Route::apiResource('/travel', TravelController::class);
-
+Route::prefix('/travel')->group(function () {
+    Route::get('/automobile/{id}', [TravelController::class, 'showByAutomobileId']);
+    Route::get('/driver/{id}', [TravelController::class, 'showByDriverId']);
+});
