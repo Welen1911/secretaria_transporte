@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('auto_mobiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->nullable()
-                ->constrained('companies', 'id')
-                ->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('year');
             $table->string('plate');
             $table->string('model');

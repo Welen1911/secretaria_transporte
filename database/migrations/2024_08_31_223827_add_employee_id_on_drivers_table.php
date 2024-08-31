@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('passengers', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('drivers', function (Blueprint $table) {
+            $table->foreignId('employee_id')->constrained('employees', 'id')
+                ->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('passengers');
+        Schema::table('drivers', function ($table) {
+            $table->dropColumn('employee_id');
+        });
     }
 };

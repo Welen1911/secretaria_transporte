@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->nullable()
-            ->constrained('companies', 'id')
-            ->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer('status');
             $table->string('category');
             $table->timestamps();

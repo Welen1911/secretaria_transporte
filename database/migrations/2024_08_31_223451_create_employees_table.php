@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('cnpj')->unique();
-            $table->string('is_enabled');
-            $table->string('image')->nullable();
+            $table->integer('user_id')->unique();
+            $table->string('cpf')->unique();
+            $table->foreignId('type_id')->constrained('types', 'id')
+            ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('employees');
     }
 };
