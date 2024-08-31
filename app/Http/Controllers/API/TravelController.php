@@ -15,7 +15,9 @@ class TravelController extends BaseController
     public function index()
     {
         try {
-            $routes = RouteService::index();
+            // $routes = RouteService::index();
+
+            $routes = DB::table('v_routes')->get();
 
             return $this->sendResponse(['routes' => $routes]);
         } catch (\Throwable $th) {
