@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::apiResource('/user', UserController::class);
-Route::prefix('/user')->group(function () {
-    Route::get('/me', [UserController::class, 'me'])->name('user.me')->middleware('auth');
-});
+Route::get('/me', [UserController::class, 'me'])->name('user.me')->middleware('auth');
+
 
 Route::apiResource('/automobile', AutoMobileController::class);
 Route::prefix('/automobile')->group(function () {

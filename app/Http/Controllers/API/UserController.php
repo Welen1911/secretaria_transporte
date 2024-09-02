@@ -59,7 +59,6 @@ class UserController extends BaseController
 
     public function me()
     {
-        dd(Auth::user());
         return $this->sendResponse(Auth::user());
     }
 }
