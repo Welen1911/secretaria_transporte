@@ -5,14 +5,20 @@ use App\Http\Controllers\API\{
     CompanyController,
     DriverController,
     TravelController,
-    TurnController
+    TurnController,
+    UserController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
+
+Route::apiResource('/user', UserController::class);
+Route::prefix('/user')->group(function () {
+    Route::get('/me', [UserController::class, 'me'])->name('user.me')->middleware('auth');
+});
 
 Route::apiResource('/automobile', AutoMobileController::class);
 Route::prefix('/automobile')->group(function () {
