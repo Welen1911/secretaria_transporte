@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->unique();
             $table->string('cpf')->unique();
-            // $table->foreignId('type_id')->constrained('types', 'id')
-            // ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('type_id')->constrained('types', 'id')
+            ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

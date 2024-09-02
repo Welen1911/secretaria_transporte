@@ -12,6 +12,11 @@ class Employee extends Model
     protected $fillable = [
         'user_id',
         'cpf',
+        'type_id',
     ];
+
+    public function type() {
+        return $this->belongsTo(Type::class);
+    }
 
 }
