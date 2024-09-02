@@ -8,6 +8,7 @@ use App\Http\Controllers\API\{
     TurnController,
     UserController
 };
+use App\Http\Middleware\ApiAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 Route::apiResource('/user', UserController::class);
-Route::get('/me', [UserController::class, 'me'])->name('user.me')->middleware('auth');
+Route::get('/me', [UserController::class, 'me'])->name('user.me')->middleware(['auth', ApiAuth::class]);
 
 
 Route::apiResource('/automobile', AutoMobileController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Actions\CheckApiToken;
 use App\Models\Employee;
 use App\Models\User;
 use App\Utils\GetByMatricula;
@@ -17,15 +18,7 @@ class UserService
     public static function store($token)
     {
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $token
-        ])->get('http://api-gerenciador-publico.com.br/api/usuario/dados-usuario');
-
-        if (!$response->ok()) {
-            throw new Exception('response error', 401);
-        }
-
-        $userLogged = $response->object();
+        $userLogged = CheckApiToken::check($token);
 
         // dd($userLogged);
 
