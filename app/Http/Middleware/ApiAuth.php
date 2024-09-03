@@ -18,16 +18,19 @@ class ApiAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-
         try {
             $userLogged = CheckApiToken::check($request->header('Login-token'));
+
+            if (isset($userLogged->status) && $userLogged->status == 401) {
+                throw new Exception($userLogged->message, 401);
+            }
 
             if ($userLogged->matricula != Auth::user()->matricula) {
                 throw new Exception('response error', 401);
             }
 
         } catch (\Throwable $e) {
-            return response(null, 401);
+            return response($e->getMessage(), 401);
         }
 
         return $next($request);
