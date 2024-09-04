@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(ApiAuth::class)->group(function () {
     Route::get('/me', [UserController::class, 'me'])->name('user.me');
-    Route::apiResource('users', UserController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
+    Route::apiResource('/users', UserController::class)->only(['create', 'edit', 'update', 'destroy']);
     Route::apiResource('/automobile', AutoMobileController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
     Route::apiResource('/turn', TurnController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
     Route::apiResource('/company', CompanyController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
@@ -27,7 +27,8 @@ Route::middleware(ApiAuth::class)->group(function () {
     Route::apiResource('/travel', TravelController::class)->only(['create', 'store', 'edit', 'update', 'destroy']);
 });
 
-Route::prefix('/user')->group(function () {
+Route::prefix('/users')->group(function () {
+    Route::post('/', [UserController::class, 'store'])->name('user.store');
     Route::get('/', [UserController::class, 'index'])->name("user.index");
     Route::get('/{id}', [UserController::class, 'index'])->name("user.show");
 });
