@@ -20,6 +20,8 @@ SELECT
     routes.turn_id AS turn,
     routes.status,
     routes.capacity,
+    routes.start AS r_start,
+    routes.end AS r_end,
     drivers.id AS driver_id,
     drivers.category AS driver_category,
     drivers.status AS driver_status,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Resource\BaseController;
 use App\Http\Requests\DriverRequest;
 use App\Models\Driver;
+use App\Models\User;
 use App\Services\DriverService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,10 @@ class DriverController extends BaseController
             ->when($request->filled('deleted'), function ($query) {
                 return $query->withTrashed();
             })->get();
+
+        foreach($drivers as $driver) {
+            $driver->user;
+        }
 
         return $this->sendResponse(['drivers' => $drivers], "Motoristas Encontrados", 200);
     }
@@ -54,6 +59,9 @@ class DriverController extends BaseController
             if (!$driver) {
                 throw new \Exception('Motorista não encontrado', 404);
             }
+
+            $driver->user;
+
             return $this->sendResponse(['driver' => $driver], "", 200);
         } catch (\Throwable $th) {
             return $this->sendError($th->getMessage(), "Falha ao buscar o Motorista", $th->getCode());
@@ -104,6 +112,10 @@ class DriverController extends BaseController
     public function getByTurnAndCategoryCNH(string $turnId, string $capacity)
     {
         $drivers = DriverService::getByTurnAndCategoryCNH($capacity, $turnId);
+
+        foreach($drivers as $driver) {
+            $driver->user = User::find($driver->user_id);
+        }
 
         return $this->sendResponse(['drivers' => $drivers]);
     }

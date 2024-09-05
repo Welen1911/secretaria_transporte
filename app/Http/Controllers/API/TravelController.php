@@ -35,7 +35,9 @@ class TravelController extends BaseController
                 'automobile_id' => $request->automobile_id,
                 'status' => 1,
                 'turn_id' => $request->turn_id,
-                'capacity' => $request->passengersNumber
+                'capacity' => $request->passengersNumber,
+                'start' => $request->start,
+                'end' => $request->end
             ]);
 
             // $routeTurn = $route->routeTurn()->create([
@@ -70,7 +72,9 @@ class TravelController extends BaseController
                 'automobile_id' => $request->automobile_id,
                 'status' => 1,
                 'turn_id' => $request->turn_id,
-                'capacity' => $request->passengersNumber
+                'capacity' => $request->passengersNumber,
+                'start' => $request->start,
+                'end' => $request->end,
             ]);
 
             return $this->sendResponse(['route' => $route]);

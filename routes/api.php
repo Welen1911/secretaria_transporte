@@ -30,7 +30,7 @@ Route::middleware(ApiAuth::class)->group(function () {
 Route::prefix('/users')->group(function () {
     Route::post('/', [UserController::class, 'store'])->name('user.store');
     Route::get('/', [UserController::class, 'index'])->name("user.index");
-    Route::get('/{id}', [UserController::class, 'index'])->name("user.show");
+    Route::get('/{id}', [UserController::class, 'show'])->name("user.show");
 });
 Route::prefix('/automobile')->group(function () {
     Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');

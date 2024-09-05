@@ -14,7 +14,12 @@ class Driver extends Model
         'company_id',
         'status',
         'category',
+        'user_id'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
     public function routes() {
         return $this->hasMany(Route::class);

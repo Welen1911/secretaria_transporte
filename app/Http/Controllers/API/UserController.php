@@ -14,7 +14,15 @@ class UserController extends BaseController
      */
     public function index()
     {
-        //
+        try {
+
+            $reponse = UserService::indexByDriver();
+
+            return $this->sendResponse($reponse, 'Listando usuários', 200);
+        } catch (\Throwable $th) {
+
+            return $this->sendError($th->getMessage(), "Falha ao pegar todos os users", $th->getCode());
+        }
     }
 
     /**

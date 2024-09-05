@@ -8,11 +8,22 @@ use App\Models\User;
 use App\Utils\GetByMatricula;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use PHPUnit\Event\Code\Throwable;
 
 class UserService
 {
+
+    public static function indexByDriver()
+    {
+        return DB::table('users')
+            ->leftJoin('drivers', 'users.id', '=', 'drivers.id')
+            ->whereNull('drivers.id')
+            ->select('users.*')
+            ->where('users.type', null)
+            ->get();
+    }
 
 
     public static function store($token)
@@ -29,11 +40,8 @@ class UserService
                 'matricula' => $userLogged->matricula,
                 'name' => $userLogged->nome,
                 'email' => $userLogged->email,
+            'type' => $userLogged->roles[0] == 'ROLE_ADMIN' ? 'admin' : null
             ]);
-
-            if ($userLogged->roles[0] == 'ROLE_ADMIN') {
-                EmployeeService::storeAdmin($user->id);
-            }
         }
 
         $token = Auth::login($user);

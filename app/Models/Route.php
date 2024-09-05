@@ -17,6 +17,8 @@ class Route extends Model
         'capacity',
         'turn_id',
         'status',
+        'start',
+        'end'
     ];
 
 

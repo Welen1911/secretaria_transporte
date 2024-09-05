@@ -23,8 +23,13 @@ class User extends Authenticatable implements JWTSubject
         'matricula',
         'email',
         'password',
+        'cpf',
+        'type',
     ];
 
+    public function driver() {
+        return $this->hasOne(Driver::class);
+    }
 
     public function getJWTIdentifier()
     {
