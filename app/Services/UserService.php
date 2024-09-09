@@ -26,6 +26,11 @@ class UserService
     }
 
 
+    public static function getByMatricula(string $matricula)
+    {
+        return DB::select('SELECT * FROM p_user_matricula(?)', [$matricula]);
+    }
+
     public static function store($token)
     {
 
@@ -40,7 +45,7 @@ class UserService
                 'matricula' => $userLogged->matricula,
                 'name' => $userLogged->nome,
                 'email' => $userLogged->email,
-            'type' => $userLogged->roles[0] == 'ROLE_ADMIN' ? 'admin' : null
+                'type' => $userLogged->roles[0] == 'ROLE_ADMIN' ? 'admin' : null
             ]);
         }
 

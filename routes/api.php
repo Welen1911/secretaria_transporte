@@ -31,6 +31,7 @@ Route::prefix('/users')->group(function () {
     Route::post('/', [UserController::class, 'store'])->name('user.store');
     Route::get('/', [UserController::class, 'index'])->name("user.index");
     Route::get('/{id}', [UserController::class, 'show'])->name("user.show");
+    Route::get('/matricula/{matricula}', [UserController::class, 'getByMatricula'])->name('user.matricula');
 });
 Route::prefix('/automobile')->group(function () {
     Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');

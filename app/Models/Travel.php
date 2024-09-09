@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Travel extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'route_id',
+        'status'
+    ];
 }

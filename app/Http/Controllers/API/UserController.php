@@ -69,4 +69,12 @@ class UserController extends BaseController
     {
         return $this->sendResponse(Auth::user());
     }
+
+    public function getByMatricula(string $matricula) {
+        $user = UserService::getByMatricula($matricula);
+
+        return $this->sendResponse([
+            'user' => $user
+        ]);
+    }
 }
