@@ -40,7 +40,12 @@ INNER JOIN
 INNER JOIN
     auto_mobiles ON routes.automobile_id = auto_mobiles.id
 INNER JOIN
-    turns ON routes.turn_id = turns.id;
+    turns ON routes.turn_id = turns.id
+WHERE
+    routes.deleted_at IS NULL
+    AND drivers.deleted_at IS NULL
+    AND auto_mobiles.deleted_at IS NULL
+    AND turns.deleted_at IS NULL;
 ');
     }
 
