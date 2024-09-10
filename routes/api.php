@@ -35,7 +35,7 @@ Route::prefix('/users')->group(function () {
 });
 Route::prefix('/automobile')->group(function () {
     Route::get('/routes/{plate}', [AutoMobileController::class, 'getRoutesByPlate'])->name('automobile.getRoutesByPlate');
-    Route::get('/{id}', [AutoMobileController::class, 'index'])->name('automobile.show');
+    Route::get('/{id}', [AutoMobileController::class, 'show'])->name('automobile.show');
     Route::get('/{turnId}/{capacity}', [AutoMobileController::class, 'getByTurnAndCapacitiy'])->name('automobile.turn.capacity');
     Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');
 });
