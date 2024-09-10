@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Resource\BaseController;
+use App\Models\Travel;
 use App\Services\AutoMobileService;
 use App\Services\DriverService;
 use App\Services\RouteService;
@@ -21,7 +22,7 @@ class TravelController extends BaseController
 
             return $this->sendResponse(['routes' => $routes]);
         } catch (\Throwable $th) {
-            return $this->sendError($th->getMessage(), "Falha ao pegar rotas", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao pegar rotas", 500);
         }
     }
 
@@ -40,6 +41,13 @@ class TravelController extends BaseController
                 'end' => $request->end
             ]);
 
+            $travel = Travel::create([
+                'route_id' => $route->id,
+                'status' => 1,
+            ]);
+
+            // DB::statement('CALL register_travel(?, ?)', [12, (int) 1]);
+
             // $routeTurn = $route->routeTurn()->create([
             //     'turn_id' => $request->turn_id,
             // ]);
@@ -49,7 +57,7 @@ class TravelController extends BaseController
             return $this->sendResponse(['route' => $route], "Rota Criada com Sucesso", 201);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return $this->sendError($th->getMessage(), "Falha ao cadastrar a Rota", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao cadastrar a Rota", 500);
         }
     }
 
@@ -60,7 +68,7 @@ class TravelController extends BaseController
 
             return $this->sendResponse(['route' => $route]);
         } catch (\Throwable $th) {
-            return $this->sendError($th->getMessage(), "Falha ao pegar a Rota", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao pegar a Rota", 500);
         }
     }
 
@@ -79,10 +87,9 @@ class TravelController extends BaseController
 
             return $this->sendResponse(['route' => $route]);
         } catch (\Throwable $th) {
-            return $this->sendError($th->getMessage(), "Falha ao excluir a Rota", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao atualizar a Rota", 500);
         }
     }
-
 
     public function destroy(string $id)
     {
@@ -91,7 +98,7 @@ class TravelController extends BaseController
 
             return $this->sendResponse(['route' => $route]);
         } catch (\Throwable $th) {
-            return $this->sendError($th->getMessage(), "Falha ao excluir a Rota", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao excluir a Rota", 500);
         }
     }
 
@@ -102,7 +109,7 @@ class TravelController extends BaseController
 
             return $this->sendResponse(['routes' => $routes]);
         } catch (\Throwable $th) {
-            return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", 500);
         }
     }
 
@@ -113,7 +120,7 @@ class TravelController extends BaseController
 
             return $this->sendResponse(['routes' => $routes]);
         } catch (\Throwable $th) {
-            return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", $th->getCode());
+            return $this->sendError($th->getMessage(), "Falha ao pegar as Rotas", 500);
         }
     }
 }

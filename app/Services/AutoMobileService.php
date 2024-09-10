@@ -32,4 +32,15 @@ class AutoMobileService {
         return $autoMobiles;
     }
 
+    public static function getRoutesByPlate($plate) 
+    {
+        $routes = DB::table('routes as r')
+            ->join('auto_mobiles as am', 'r.automobile_id', '=', 'am.id')
+            ->where('am.plate', $plate)
+            ->select('r.*')
+            ->get();
+
+        return $routes;
+    }
+
 }

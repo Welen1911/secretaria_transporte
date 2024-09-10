@@ -34,9 +34,10 @@ Route::prefix('/users')->group(function () {
     Route::get('/matricula/{matricula}', [UserController::class, 'getByMatricula'])->name('user.matricula');
 });
 Route::prefix('/automobile')->group(function () {
-    Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');
+    Route::get('/routes/{plate}', [AutoMobileController::class, 'getRoutesByPlate'])->name('automobile.getRoutesByPlate');
     Route::get('/{id}', [AutoMobileController::class, 'index'])->name('automobile.show');
     Route::get('/{turnId}/{capacity}', [AutoMobileController::class, 'getByTurnAndCapacitiy'])->name('automobile.turn.capacity');
+    Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');
 });
 Route::prefix('/turn')->group(function () {
     Route::get('/', [TurnController::class, 'index'])->name('turn.index');
@@ -46,11 +47,7 @@ Route::prefix('/company')->group(function () {
     Route::get('/', [CompanyController::class, 'index'])->name('company.index');
     Route::get('/{id}', [CompanyController::class, 'show'])->name('company.show');
 });
-Route::prefix('/automobile')->group(function () {
-    Route::get('/', [AutoMobileController::class, 'index'])->name('automobile.index');
-    Route::get('/{id}', [AutoMobileController::class, 'show'])->name('automobile.show');
-    Route::get('/{turnId}/{capacity}', [AutoMobileController::class, 'getByTurnAndCapacitiy'])->name('automobile.turn.capacity');
-});
+
 Route::prefix('/driver')->group(function () {
     Route::get('/', [DriverController::class, 'index'])->name('driver.index');
     Route::get('/{id}', [DriverController::class, 'show'])->name('driver.show');
@@ -62,3 +59,5 @@ Route::prefix('/travel')->group(function () {
     Route::get('/automobile/{id}', [TravelController::class, 'showByAutomobileId']);
     Route::get('/driver/{id}', [TravelController::class, 'showByDriverId']);
 });
+
+

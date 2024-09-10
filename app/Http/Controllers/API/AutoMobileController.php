@@ -123,4 +123,11 @@ class AutoMobileController extends BaseController
 
         return $this->sendResponse(['auto_mobiles' => $autoMobiles]);
     }
+
+    public function getRoutesByPlate(string $plate) 
+    {
+        $routes = AutoMobileService::getRoutesByPlate($plate);
+
+        return $this->sendResponse(['routes' => $routes]);
+    }
 }
